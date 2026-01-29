@@ -2,7 +2,7 @@
 
 A tool for demonstration how Python can be used for analyzing industrial control system alarms per **ISA-18.2** and **EEMUA 191** standards. Generates PDF report with recommendations for alarm management improvement.
 
-All calculations are performed in a efficient way without using LLM or other heavy algorithms. For alarm patterns and suppression recommendations I used FP-Growth algorithm. For alarms sequenve analaysis - Markov transitions. Injecting LLMs in the process of alarms analysis will bring more insights, for sure. However, it will increase the calculation cost...
+All calculations are performed in a efficient way without using LLM or other heavy algorithms. For alarm patterns and suppression recommendations I used FP-Growth algorithm. For alarms sequence analaysis - Markov transitions. Injecting LLMs in the process of alarms analysis will bring more insights, for sure. However, it will increase the calculation cost...
 
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
