@@ -20,7 +20,7 @@ A tool for demonstration how Python can be used for analyzing industrial control
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/andreenko-repo/alarms_analyzer.git
 cd alarms_analyzer
 
 # Install dependencies
@@ -99,13 +99,12 @@ The tool expects a CSV file with the following structure:
 ### Example CSV
 
 ```csv
-,timestamp,tag,description,condition
-0,2024-01-01 00:01:30,FI106,E-106 REBOILER INLET FLOW,HIGH
-1,2024-01-01 00:03:00,FI106,E-106 REBOILER INLET FLOW,HIGH RECOVERED
-2,2024-01-01 00:03:30,LI101,T-101 DISTILLATION COLUMN LEVEL,LOW
-3,2024-01-01 00:05:06,LI101,T-101 DISTILLATION COLUMN LEVEL,LOW LOW
-4,2024-01-01 00:07:00,LI101,T-101 DISTILLATION COLUMN LEVEL,LOW LOW RECOVERED
-5,2024-01-01 00:07:30,LI101,T-101 DISTILLATION COLUMN LEVEL,LOW RECOVERED
+index,timestamp,tag,description,condition
+0,2026-01-01 00:00:30.000,FI106,E-106 REBOILER INLET FLOW,HIGH
+1,2026-01-01 00:00:30.000,FI106,E-106 REBOILER INLET FLOW,FAULT
+2,2026-01-01 00:01:00.000,FI106,E-106 REBOILER INLET FLOW,FAULT RECOVERED
+3,2026-01-01 00:01:30.000,TI101,T-101 DISTILLATION COLUMN TEMPERATURE 1,LOW
+4,2026-01-01 00:01:30.000,FI106,E-106 REBOILER INLET FLOW,HIGH RECOVERED
 ```
 
 ## Report Sections
@@ -115,7 +114,7 @@ The generated PDF report contains 13 sections:
 1. **Executive Summary** - EEMUA status, flood analysis, key metrics
 2. **Temporal Analysis** - Hourly/daily distribution, High Density Alarm Plot (HDAP)
 3. **Bad Actor Analysis** - Pareto chart, top frequent alarms
-4. **Chatter Analysis** - Kondaveeti chatter index ranking
+4. **Chatter Analysis** - Kondaveeti et al chatter index ranking
 5. **Repeatability Analysis** - Re-activation frequency within window
 6. **Nuisance Identification** - Composite score (chatter + repeatability + frequency)
 7. **Stale Alarms** - Alarms active beyond threshold
@@ -125,27 +124,6 @@ The generated PDF report contains 13 sections:
 11. **Suppression Recommendations** - Association rule-based suggestions
 12. **Sequence Analysis** - Markov transition probability matrix
 13. **Recommendations Summary** - Prioritized action items
-
-## EEMUA 191 Benchmarks
-
-The tool classifies alarm system health based on average alarms per 10 minutes:
-
-| Status | Rate (per 10 min) | Description |
-|--------|-------------------|-------------|
-| 🟢 Excellent | < 1 | Very acceptable |
-| 🟡 Good | 1 - 2 | Acceptable |
-| 🟠 Warning | 2 - 5 | Manageable |
-| 🔴 Critical | 5 - 10 | Likely to miss alarms |
-| ⚫ Overloaded | > 10 | Extremely dangerous |
-
-## ISA-18.2 Compliance
-
-The analysis addresses key ISA-18.2 requirements:
-
-- **Section 6.3** - Alarm flood detection (>10 alarms per 10 minutes)
-- **Section 11** - Bad actor review and rationalization
-- **Section 12** - State-based suppression recommendations
-- **Annex B** - Chatter and repeatability metrics
 
 ## Project Structure
 
@@ -181,7 +159,3 @@ alarm-analysis/
 ## License
 
 MIT License - See LICENSE file for details.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
